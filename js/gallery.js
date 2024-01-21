@@ -61,15 +61,19 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector(".gallery");
+const galleryList = document.querySelector('.gallery');
+ 
 
-function imageTemplate(image) {
+// const imageOriginal = image.original;
+// console.log(imageOriginal);
+
+function imageTemplate(item) {
   return `<li class="gallery-item">
-  <a class="gallery-link" href="${image.original}">
+  <a class="gallery-link" href="${item.original}">
     <img class="gallery-image"
-      src="${image.preview}"
-      data-source="${image.original}"
-      alt="${image.description}"
+      src="${item.preview}"
+      data-source="${item.original}"
+      alt="${item.description}"
       width="360"
       height="200"
     />
@@ -80,6 +84,6 @@ function imageTemplate(image) {
 imageTemplate();
 
 // function imageListTemplate(images) {
-//   const markup = images.map(imageTemplate);
+//  const markup = images.map(imageTemplate);
 //   console.log(markup);
 // }
