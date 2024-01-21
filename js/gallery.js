@@ -76,8 +76,8 @@ const images = [
       <img
         class="gallery-image"
         src="${images.preview}"
-        data-source=${images.original}
-        alt=${images.description}
+        data-source="${images.original}"
+        alt="${images.description}"
       />
     </a>
   </li>`;
