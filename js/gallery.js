@@ -1,7 +1,10 @@
 const images = [
-  {preview:'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg',
-    original:'https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg',
-    description: 'Hokkaido Flower',
+  {
+    preview:
+      "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg",
+    original:
+      "https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg",
+    description: "Hokkaido Flower",
   },
   {
     preview:
@@ -61,29 +64,50 @@ const images = [
   },
 ];
 
-const galleryList = document.querySelector('.gallery');
- 
+const galleryList = document.querySelector(".gallery");
 
-// const imageOriginal = image.original;
-// console.log(imageOriginal);
+// console.log(galleryList);
 
-function imageTemplate(item) {
-  return `<li class="gallery-item">
-  <a class="gallery-link" href="${item.original}">
-    <img class="gallery-image"
-      src="${item.preview}"
-      data-source="${item.original}"
-      alt="${item.description}"
-      width="360"
-      height="200"
+galleryList.addEventListener("click", openModalWindow);
+
+function imageListTemplate(images) {
+  const markup = images
+    .map(
+      ({ original, preview, description }) => `<li class='gallery-item'>
+  <a class='gallery-link' href='${original}'>
+    <img
+      class='gallery-image'
+      src='${preview}'
+      data-source='${original}'
+      alt='${description}'
     />
   </a>
-</li>`;
+</li>`
+    )
+    .join("");
+
+  galleryList.innerHTML = markup;
+
+  console.log(markup);
 }
 
-imageTemplate();
-
-// function imageListTemplate(images) {
-//  const markup = images.map(imageTemplate);
-//   console.log(markup);
-// }
+const modalImage = basicLightbox.create(`<img src=''>`, {
+  onShow: (modalImage) => {
+    window.addEventListener("keydown", closeModalWindow);
+  },
+  onClose: (modalImage) => {
+    window.removeEventListener("keydown", closeModalWindow);
+  },
+});
+function openModalWindow(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== "IMG") return;
+  const selectedImageSrc = e.target.dataset.source;
+  modalImage.element().querySelector("IMG").src = selectedImageSrc;
+  modalImage.show();
+}
+function closeModalWindow(e) {
+  if (e.key === "Escape") {
+  }
+  modalImage.close();
+}
