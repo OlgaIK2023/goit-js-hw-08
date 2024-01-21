@@ -8,10 +8,15 @@ ul {
   width: 1440px;
   height: 696px;
   padding: 24px 156px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
 }
 
 .gallery-div {
     width: 1128px;
+    
 }
 
 

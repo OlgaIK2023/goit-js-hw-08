@@ -70,26 +70,24 @@ const galleryList = document.querySelector(".gallery");
 
 galleryList.addEventListener("click", openModalWindow);
 
-function imageListTemplate(images) {
-  const markup = images
-    .map(
-      ({ original, preview, description }) => `<li class='gallery-item'>
+const markup = images
+  .map(
+    ({ original, preview, description }) => `<li class='gallery-item'>
   <a class='gallery-link' href='${original}'>
     <img
       class='gallery-image'
       src='${preview}'
       data-source='${original}'
       alt='${description}'
+      width="360"
+      height="200"
     />
   </a>
 </li>`
-    )
-    .join("");
+  )
+  .join("");
 
-  galleryList.innerHTML = markup;
-
-  console.log(markup);
-}
+galleryList.innerHTML = markup;
 
 const modalImage = basicLightbox.create(`<img src=''>`, {
   onShow: (modalImage) => {
