@@ -105,7 +105,7 @@ function openModalWindow(e) {
   modalImage.show();
 }
 function closeModalWindow(e) {
-  if (e.key === "Escape") {
+    if (e.key === "Escape") {
+      modalImage.close();
+    }
   }
-  modalImage.close();
-}
